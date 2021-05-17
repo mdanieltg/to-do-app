@@ -1,0 +1,35 @@
+<header>
+  <div class="navbar navbar-light bg-light">
+    <div class="container-fluid">
+      <span class="navbar-brand mb-0 h1">{{title}}</span>
+    </div>
+  </div>
+</header>
+<main>
+  <div class="container my-2">
+    <app-new-item (newItemEvent)="newTask($event)"></app-new-item>
+    <div class="list-group mt-2"
+         *ngIf="taskList.length !== 0 || completedTaskList.length !== 0">
+      <app-to-do-item *ngFor="let item of taskList" class="list-group-item"
+                      [task]="item"
+                      (completedEvent)="completeTask($event)"></app-to-do-item>
+      <app-completed-item *ngFor="let item of completedTaskList" class="list-group-item"
+                          [task]="item"
+                          (unfinishedEvent)="revertTask($event)"></app-completed-item>
+    </div>
+  </div>
+</main>
+<footer class="footer py-3 bg-light text-muted text-center">
+  <div class="container">
+    <div class="">
+      {{title}} &copy; 2021 <a href="https://danielmedrano.dev/"
+                               target="_blank"
+                               title="Sitio web personal de Daniel.">Daniel Medrano Huerta</a>.
+    </div>
+    <div>
+      <a href="https://github.com/mdanieltg/to-do-app"
+         target="_blank"
+         title="Repositorio de este proyecto."><i class="fab fa-github text-secondary"></i></a>
+    </div>
+  </div>
+</footer>
