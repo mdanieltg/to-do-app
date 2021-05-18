@@ -1,31 +1,55 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ToDoTask } from './to-do-task';
+import { AppState } from './app-state';
+import { readFromLocalStorage, writeToLocalStorage } from './util';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'Lista de Tareas';
-  taskList: ToDoTask[] = [];
-  completedTaskList: ToDoTask[] = [];
+  toDoList: ToDoTask[] = [];
+  doneList: ToDoTask[] = [];
 
   newTask(task: ToDoTask): void {
-    if (!this.taskList.includes(task)) {
-      this.taskList.unshift(task);
+    if (!this.toDoList.includes(task)) {
+      this.toDoList.unshift(task);
+      this.saveState();
     }
   }
 
   completeTask(task: ToDoTask): void {
-    const index = this.taskList.indexOf(task);
-    this.taskList.splice(index, 1);
-    this.completedTaskList.unshift(task);
+    const index = this.toDoList.indexOf(task);
+    this.toDoList.splice(index, 1);
+    this.doneList.unshift(task);
+    this.saveState();
   }
 
   revertTask(task: ToDoTask): void {
-    const index = this.completedTaskList.indexOf(task);
-    this.completedTaskList.splice(index, 1);
-    this.taskList.unshift(task);
+    const index = this.doneList.indexOf(task);
+    this.doneList.splice(index, 1);
+    this.toDoList.unshift(task);
+    this.saveState();
   }
+
+  private saveState(): void {
+    const state: AppState = {
+      toDo: this.toDoList,
+      done: this.doneList
+    };
+    writeToLocalStorage('tasks', state);
+  }
+
+  ngOnInit(): void {
+    const state = readFromLocalStorage<AppState>('tasks') ??
+      {
+        toDo: [],
+        done: []
+      };
+    this.toDoList = state.toDo;
+    this.doneList = state.done;
+  }
+
 }

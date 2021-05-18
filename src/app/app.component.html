@@ -9,11 +9,11 @@
   <div class="container my-2">
     <app-new-item (newItemEvent)="newTask($event)"></app-new-item>
     <div class="list-group mt-2"
-         *ngIf="taskList.length !== 0 || completedTaskList.length !== 0">
-      <app-to-do-item *ngFor="let item of taskList" class="list-group-item"
+         *ngIf="toDoList.length !== 0 || doneList.length !== 0">
+      <app-to-do-item *ngFor="let item of toDoList" class="list-group-item"
                       [task]="item"
                       (completedEvent)="completeTask($event)"></app-to-do-item>
-      <app-completed-item *ngFor="let item of completedTaskList" class="list-group-item"
+      <app-completed-item *ngFor="let item of doneList" class="list-group-item"
                           [task]="item"
                           (unfinishedEvent)="revertTask($event)"></app-completed-item>
     </div>
