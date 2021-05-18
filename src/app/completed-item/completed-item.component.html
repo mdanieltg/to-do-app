@@ -4,6 +4,7 @@
     {{this.task?.title}}
   </label>
 
+  <a href="#" (click)="delete($event)"><i class="far fa-trash-alt text-danger mx-2"></i></a>
   <a href="#" *ngIf="this.task?.important" (click)="toggleImportance($event)"><i class="fas fa-star"></i></a>
   <a href="#" *ngIf="!this.task?.important" (click)="toggleImportance($event)"><i class="far fa-star"></i></a>
 </div>

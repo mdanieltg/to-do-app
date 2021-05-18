@@ -9,6 +9,7 @@ import { ToDoTask } from '../to-do-task';
 export class CompletedItemComponent {
   @Input() task: ToDoTask | undefined;
   @Output() unfinishedEvent = new EventEmitter<ToDoTask>();
+  @Output() deletedEvent = new EventEmitter<ToDoTask>();
 
   constructor() {
   }
@@ -23,6 +24,11 @@ export class CompletedItemComponent {
 
   undoTask(): void {
     this.unfinishedEvent.emit(this.task);
+  }
+
+  delete(e: MouseEvent): void {
+    e.preventDefault();
+    this.deletedEvent.emit(this.task);
   }
 
 }

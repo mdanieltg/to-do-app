@@ -12,10 +12,12 @@
          *ngIf="toDoList.length !== 0 || doneList.length !== 0">
       <app-to-do-item *ngFor="let item of toDoList" class="list-group-item"
                       [task]="item"
-                      (completedEvent)="completeTask($event)"></app-to-do-item>
+                      (completedEvent)="completeTask($event)"
+                      (deletedEvent)="deleteTask($event, toDoList)"></app-to-do-item>
       <app-completed-item *ngFor="let item of doneList" class="list-group-item"
                           [task]="item"
-                          (unfinishedEvent)="revertTask($event)"></app-completed-item>
+                          (unfinishedEvent)="revertTask($event)"
+                          (deletedEvent)="deleteTask($event, doneList)"></app-completed-item>
     </div>
   </div>
 </main>

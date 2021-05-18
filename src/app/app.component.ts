@@ -34,6 +34,12 @@ export class AppComponent implements OnInit {
     this.saveState();
   }
 
+  deleteTask(task: ToDoTask, list: ToDoTask[]): void {
+    const index = list.indexOf(task);
+    list.splice(index, 1);
+    this.saveState();
+  }
+
   private saveState(): void {
     const state: AppState = {
       toDo: this.toDoList,
