@@ -8,10 +8,15 @@ import { ToDoTask } from '../to-do-task';
 })
 export class ToDoItemComponent {
   @Input() task: ToDoTask | undefined;
+  @Output() selectedEvent = new EventEmitter<ToDoTask>();
   @Output() completedEvent = new EventEmitter<ToDoTask>();
   @Output() deletedEvent = new EventEmitter<ToDoTask>();
 
   constructor() {
+  }
+
+  select(): void {
+    this.selectedEvent.emit(this.task);
   }
 
   toggleImportance(e: MouseEvent): void {

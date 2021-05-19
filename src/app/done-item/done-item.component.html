@@ -1,6 +1,6 @@
 <div class="d-flex align-items-center">
-  <label class="flex-grow-1 text-decoration-line-through">
-    <input class="form-check-input me-1" type="checkbox" value="" checked (click)="undoTask()">
+  <label class="flex-grow-1 text-decoration-line-through" (click)="select()">
+    <input class="form-check-input me-1" type="checkbox" checked (click)="undoTask()">
     {{this.task?.title}}
   </label>
 

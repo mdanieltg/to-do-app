@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ToDoTask } from './to-do-task';
 import { AppState } from './app-state';
-import { readFromLocalStorage, writeToLocalStorage } from './util';
+import { getDefaultTask, readFromLocalStorage, writeToLocalStorage } from './util';
 
 @Component({
   selector: 'app-root',
@@ -12,6 +12,13 @@ export class AppComponent implements OnInit {
   title = 'Lista de Tareas';
   toDoList: ToDoTask[] = [];
   doneList: ToDoTask[] = [];
+  selectedTask: ToDoTask = getDefaultTask();
+  editing = false;
+
+  selectTask(task: ToDoTask): void {
+    this.selectedTask = task;
+    this.editing = true;
+  }
 
   newTask(task: ToDoTask): void {
     if (!this.toDoList.includes(task)) {
@@ -34,10 +41,35 @@ export class AppComponent implements OnInit {
     this.saveState();
   }
 
+  updateTask(task: ToDoTask): void {
+    this.editing = false;
+    if (this.selectedTask !== task) {
+      this.selectedTask.title = task.title;
+      this.selectedTask.important = task.important;
+      this.selectedTask.description = task.description;
+      this.selectedTask.dueDate = task.dueDate;
+    }
+  }
+
   deleteTask(task: ToDoTask, list: ToDoTask[]): void {
     const index = list.indexOf(task);
     list.splice(index, 1);
     this.saveState();
+  }
+
+  deleteTaskFromDetail(taskId: number): void {
+    this.editing = false;
+    let task = this.toDoList.find(v => v.id === taskId);
+
+    if (task !== undefined) {
+      this.deleteTask(task, this.toDoList);
+    } else {
+      task = this.doneList.find(value => value.id === taskId);
+
+      if (task !== undefined) {
+        this.deleteTask(task, this.doneList);
+      }
+    }
   }
 
   private saveState(): void {

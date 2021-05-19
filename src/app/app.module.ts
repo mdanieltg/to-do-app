@@ -6,13 +6,15 @@ import { AppComponent } from './app.component';
 import { ToDoItemComponent } from './to-do-item/to-do-item.component';
 import { DoneItemComponent } from './done-item/done-item.component';
 import { NewItemComponent } from './new-item/new-item.component';
+import { ItemDetailComponent } from './item-detail/item-detail.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ToDoItemComponent,
     DoneItemComponent,
-    NewItemComponent
+    NewItemComponent,
+    ItemDetailComponent
   ],
   imports: [
     BrowserModule,
