@@ -2,11 +2,11 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ToDoTask } from '../to-do-task';
 
 @Component({
-  selector: 'app-completed-item',
-  templateUrl: './completed-item.component.html',
-  styleUrls: ['./completed-item.component.css']
+  selector: 'app-done-item',
+  templateUrl: './done-item.component.html',
+  styleUrls: ['./done-item.component.css']
 })
-export class CompletedItemComponent {
+export class DoneItemComponent {
   @Input() task: ToDoTask | undefined;
   @Output() unfinishedEvent = new EventEmitter<ToDoTask>();
   @Output() deletedEvent = new EventEmitter<ToDoTask>();

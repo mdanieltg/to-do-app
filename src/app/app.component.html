@@ -14,10 +14,10 @@
                       [task]="item"
                       (completedEvent)="completeTask($event)"
                       (deletedEvent)="deleteTask($event, toDoList)"></app-to-do-item>
-      <app-completed-item *ngFor="let item of doneList" class="list-group-item"
-                          [task]="item"
-                          (unfinishedEvent)="revertTask($event)"
-                          (deletedEvent)="deleteTask($event, doneList)"></app-completed-item>
+      <app-done-item *ngFor="let item of doneList" class="list-group-item"
+                     [task]="item"
+                     (unfinishedEvent)="revertTask($event)"
+                     (deletedEvent)="deleteTask($event, doneList)"></app-done-item>
     </div>
   </div>
 </main>

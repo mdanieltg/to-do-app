@@ -4,14 +4,14 @@ import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { ToDoItemComponent } from './to-do-item/to-do-item.component';
-import { CompletedItemComponent } from './completed-item/completed-item.component';
+import { DoneItemComponent } from './done-item/done-item.component';
 import { NewItemComponent } from './new-item/new-item.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ToDoItemComponent,
-    CompletedItemComponent,
+    DoneItemComponent,
     NewItemComponent
   ],
   imports: [
