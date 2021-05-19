@@ -20,13 +20,21 @@ export class ItemDetailComponent implements OnInit {
     if (cancel) {
       this.taskUpdatedEvent.emit(this.inputTask);
     } else {
-      // Forzar descripción cuando está vacía a adoptar undefined
-      if (this.bufferTask.description !== undefined &&
-        this.bufferTask.description.trim() === '') {
-        this.bufferTask.description = undefined;
+      this.bufferTask.title = this.bufferTask.title.trim();
+
+      if (this.bufferTask.title === '') {
+        return;
       }
 
-      // Forzar fecha cuando está vacía o es inválida a adoptar undefined
+      // Forzar descripción como undefined cuando está vacía
+      {
+        if (this.bufferTask.description !== undefined &&
+          this.bufferTask.description.trim() === '') {
+          this.bufferTask.description = undefined;
+        }
+      }
+
+      // Forzar fecha como undefined cuando está vacía o es inválida
       if (this.bufferTask.dueDate !== undefined &&
         this.bufferTask.dueDate.toString().trim() === '') {
         this.bufferTask.dueDate = undefined;

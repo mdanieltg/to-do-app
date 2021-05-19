@@ -4,7 +4,8 @@
 </div>
 <div class="mb-3">
   <label for="title" class="form-label">Título de la tarea</label>
-  <input [(ngModel)]="bufferTask.title" type="text" id="title" class="form-control" required>
+  <input [(ngModel)]="bufferTask.title" type="text" id="title" class="form-control" placeholder="No puede estar vacío"
+         required>
 </div>
 <div class="mb-3">
   <label for="description" class="form-label">Descripción</label>
@@ -21,7 +22,7 @@
 
 <div class="d-flex justify-content-between">
   <div class="input-group">
-    <button class="btn btn-primary" (click)="saveTask()">Guardar tarea</button>
+    <button class="btn btn-primary" (click)="saveTask()">Guardar</button>
     <button class="btn btn-outline-secondary" (click)="saveTask(true)">Cancelar</button>
   </div>
   <button class="btn btn-outline-danger" (click)="deleteTask()">Eliminar</button>
