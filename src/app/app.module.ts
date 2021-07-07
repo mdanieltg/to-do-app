@@ -9,6 +9,7 @@ import { ToDoItemComponent } from './to-do-item/to-do-item.component';
 import { DoneItemComponent } from './done-item/done-item.component';
 import { NewItemComponent } from './new-item/new-item.component';
 import { ItemDetailComponent } from './item-detail/item-detail.component';
+import { StartComponent } from './start/start.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { ItemDetailComponent } from './item-detail/item-detail.component';
     ToDoItemComponent,
     DoneItemComponent,
     NewItemComponent,
-    ItemDetailComponent
+    ItemDetailComponent,
+    StartComponent
   ],
   imports: [
     BrowserModule,
