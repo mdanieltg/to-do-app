@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { ToDoTask } from '../to-do-task';
-import { generateRandomId as newId } from '../util';
+import { TaskService } from '../task-service/task.service';
 
 @Component({
   selector: 'app-new-item',
@@ -10,10 +10,9 @@ import { generateRandomId as newId } from '../util';
 export class NewItemComponent {
   taskTitle = '';
   important = false;
-  prototypeTask: ToDoTask | undefined;
   @Output() newItemEvent = new EventEmitter<ToDoTask>();
 
-  constructor() {
+  constructor(private taskService: TaskService) {
   }
 
   toggleImportance(e: MouseEvent): void {
@@ -31,8 +30,8 @@ export class NewItemComponent {
     this.taskTitle = this.taskTitle.trim();
 
     if (this.taskTitle.length !== 0) {
-      this.prototypeTask = {
-        id: newId(),
+      const task = {
+        id: 0,
         title: this.taskTitle,
         important: this.important,
         dueDate: undefined,
@@ -40,7 +39,8 @@ export class NewItemComponent {
         done: false
       };
 
-      this.newItemEvent.emit(this.prototypeTask);
+      this.taskService.addTask(task);
+      this.newItemEvent.emit(task);
     }
 
     this.taskTitle = '';

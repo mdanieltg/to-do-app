@@ -14,23 +14,19 @@
                      (taskDeletedEvent)="deleteTaskFromDetail($event)"></app-item-detail>
   </div>
   <div *ngIf="!editing" class="container my-2">
-    <app-new-item (newItemEvent)="newTask($event)"></app-new-item>
+    <app-new-item (newItemEvent)="reload()"></app-new-item>
     <div class="list-group mt-2"
-         *ngIf="toDoList.length !== 0 || doneList.length !== 0">
-      <app-to-do-item *ngFor="let item of toDoList" class="list-group-item"
-                      [task]="item"
-                      (selectedEvent)="selectTask($event)"
-                      (completedEvent)="completeTask($event)"
-                      (deletedEvent)="deleteTask($event, toDoList)"></app-to-do-item>
-      <app-done-item *ngFor="let item of doneList" class="list-group-item"
+         *ngIf="tasks.length !== 0">
+      <app-item-list *ngFor="let item of tasks" class="list-group-item"
                      [task]="item"
                      (selectedEvent)="selectTask($event)"
-                     (unfinishedEvent)="revertTask($event)"
-                     (deletedEvent)="deleteTask($event, doneList)"></app-done-item>
+                     (completedEvent)="completeTask($event)"
+                     (uncompletedEvent)="revertTask($event)"
+                     (deletedEvent)="deleteTask($event)"></app-item-list>
     </div>
   </div>
 </main>
-<footer class="py-3 bg-light text-muted text-center ">
+<footer class="py-3 bg-light text-muted text-center">
   <div class="container">
     <div>
       {{title}}

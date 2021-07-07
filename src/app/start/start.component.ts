@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { TaskService } from '../task-service/task.service';
 import { ToDoTask } from '../to-do-task';
-import { AppState } from '../app-state';
-import { getDefaultTask, readFromLocalStorage, writeToLocalStorage } from '../util';
+import { getDefaultTask } from '../util';
 
 @Component({
   selector: 'app-start',
@@ -10,35 +10,26 @@ import { getDefaultTask, readFromLocalStorage, writeToLocalStorage } from '../ut
 })
 export class StartComponent implements OnInit {
   title = 'Lista de Tareas';
-  toDoList: ToDoTask[] = [];
-  doneList: ToDoTask[] = [];
+  tasks: ToDoTask[] = [];
   selectedTask: ToDoTask = getDefaultTask();
   editing = false;
+
+  constructor(private taskService: TaskService) {
+  }
 
   selectTask(task: ToDoTask): void {
     this.selectedTask = task;
     this.editing = true;
   }
 
-  newTask(task: ToDoTask): void {
-    if (!this.toDoList.includes(task)) {
-      this.toDoList.unshift(task);
-      this.saveState();
-    }
+  completeTask(taskId: number): void {
+    this.taskService.completeTask(taskId);
+    this.reload();
   }
 
-  completeTask(task: ToDoTask): void {
-    const index = this.toDoList.indexOf(task);
-    this.toDoList.splice(index, 1);
-    this.doneList.unshift(task);
-    this.saveState();
-  }
-
-  revertTask(task: ToDoTask): void {
-    const index = this.doneList.indexOf(task);
-    this.doneList.splice(index, 1);
-    this.toDoList.unshift(task);
-    this.saveState();
+  revertTask(taskId: number): void {
+    this.taskService.deCompleteTask(taskId);
+    this.reload();
   }
 
   updateTask(task: ToDoTask): void {
@@ -51,43 +42,28 @@ export class StartComponent implements OnInit {
     }
   }
 
-  deleteTask(task: ToDoTask, list: ToDoTask[]): void {
-    const index = list.indexOf(task);
-    list.splice(index, 1);
-    this.saveState();
+  deleteTask(taskId: number): void {
+    this.taskService.removeTask(taskId);
+    this.reload();
   }
 
   deleteTaskFromDetail(taskId: number): void {
     this.editing = false;
-    let task = this.toDoList.find(v => v.id === taskId);
+    this.taskService.removeTask(taskId);
+    this.reload();
+  }
 
-    if (task !== undefined) {
-      this.deleteTask(task, this.toDoList);
-    } else {
-      task = this.doneList.find(value => value.id === taskId);
-
-      if (task !== undefined) {
-        this.deleteTask(task, this.doneList);
-      }
-    }
+  reload(): void {
+    this.tasks = this.taskService.reload();
+    console.log('Reload', this.tasks);
   }
 
   private saveState(): void {
-    const state: AppState = {
-      toDo: this.toDoList,
-      done: this.doneList
-    };
-    writeToLocalStorage('tasks', state);
+    console.log('State saved:', this.tasks);
   }
 
   ngOnInit(): void {
-    const state = readFromLocalStorage<AppState>('tasks') ??
-      {
-        toDo: [],
-        done: []
-      };
-    this.toDoList = state.toDo;
-    this.doneList = state.done;
+    this.tasks = this.taskService.getTasks();
+    console.log('start.onInit');
   }
-
 }

@@ -5,8 +5,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 
 import { AppComponent } from './app.component';
-import { ToDoItemComponent } from './to-do-item/to-do-item.component';
-import { DoneItemComponent } from './done-item/done-item.component';
+import { ItemListComponent } from './item-list/item-list.component';
 import { NewItemComponent } from './new-item/new-item.component';
 import { ItemDetailComponent } from './item-detail/item-detail.component';
 import { StartComponent } from './start/start.component';
@@ -14,8 +13,7 @@ import { StartComponent } from './start/start.component';
 @NgModule({
   declarations: [
     AppComponent,
-    ToDoItemComponent,
-    DoneItemComponent,
+    ItemListComponent,
     NewItemComponent,
     ItemDetailComponent,
     StartComponent
