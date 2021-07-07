@@ -9,13 +9,15 @@ import { DEFAULT_TASK } from '../util';
 })
 export class ItemListComponent {
   @Input() task: ToDoTask = DEFAULT_TASK;
-  @Output() selectedEvent = new EventEmitter<ToDoTask>();
-  @Output() completedEvent = new EventEmitter<number>();
-  @Output() uncompletedEvent = new EventEmitter<number>();
+  @Output() selectedEvent = new EventEmitter<number>();
+  @Output() updatedEvent = new EventEmitter<ToDoTask>();
   @Output() deletedEvent = new EventEmitter<number>();
 
-  select(): void {
-    this.selectedEvent.emit(this.task);
+  toggleCompletion(): void {
+    if (this.task !== undefined) {
+      this.task.done = !this.task.done;
+      this.updateTask();
+    }
   }
 
   toggleImportance(e: MouseEvent): void {
@@ -23,15 +25,12 @@ export class ItemListComponent {
 
     if (this.task !== undefined) {
       this.task.important = !this.task.important;
+      this.updateTask();
     }
   }
 
-  completeTask(): void {
-    this.completedEvent.emit(this.task.id);
-  }
-
-  deCompleteTask(): void {
-    this.uncompletedEvent.emit(this.task.id);
+  select(): void {
+    this.selectedEvent.emit(this.task.id);
   }
 
   delete(e: MouseEvent): void {
@@ -39,4 +38,7 @@ export class ItemListComponent {
     this.deletedEvent.emit(this.task.id);
   }
 
+  private updateTask(): void {
+    this.updatedEvent.emit(this.task);
+  }
 }

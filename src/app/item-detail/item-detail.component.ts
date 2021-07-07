@@ -1,4 +1,6 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { TaskService } from '../task-service/task.service';
 import { ToDoTask } from '../to-do-task';
 import { areEqualTasks as equal, DEFAULT_TASK } from '../util';
 
@@ -8,51 +10,59 @@ import { areEqualTasks as equal, DEFAULT_TASK } from '../util';
   styleUrls: ['./item-detail.component.css']
 })
 export class ItemDetailComponent implements OnInit {
-  @Input() inputTask: ToDoTask = DEFAULT_TASK;
-  @Output() taskUpdatedEvent = new EventEmitter<ToDoTask>();
-  @Output() taskDeletedEvent = new EventEmitter<number>();
-  bufferTask: ToDoTask = DEFAULT_TASK;
+  originalTask: ToDoTask = DEFAULT_TASK;
+  task: ToDoTask = DEFAULT_TASK;
 
-  constructor() {
+  constructor(private router: Router,
+              private route: ActivatedRoute,
+              private taskService: TaskService) {
   }
 
-  saveTask(cancel = false): void {
-    if (cancel) {
-      this.taskUpdatedEvent.emit(this.inputTask);
-    } else {
-      this.bufferTask.title = this.bufferTask.title.trim();
+  saveChanges(): void {
+    this.task.title = this.task.title.trim();
 
-      if (this.bufferTask.title === '') {
-        return;
-      }
-
+    if (this.task.title !== '') {
       // Forzar descripción como undefined cuando está vacía
       {
-        if (this.bufferTask.description !== undefined &&
-          this.bufferTask.description.trim() === '') {
-          this.bufferTask.description = undefined;
+        if (this.task.description !== undefined &&
+          this.task.description.trim() === '') {
+          this.task.description = undefined;
         }
       }
 
       // Forzar fecha como undefined cuando está vacía o es inválida
-      if (this.bufferTask.dueDate !== undefined &&
-        this.bufferTask.dueDate.toString().trim() === '') {
-        this.bufferTask.dueDate = undefined;
+      if (this.task.dueDate !== undefined &&
+        this.task.dueDate.toString().trim() === '') {
+        this.task.dueDate = undefined;
       }
 
-      this.taskUpdatedEvent.emit(equal(this.bufferTask, this.inputTask)
-                                 ? this.inputTask
-                                 : this.bufferTask);
+      if (!equal(this.task, this.originalTask)) {
+        this.taskService.updateTask(this.task);
+        this.router.navigate(['/']);
+      }
     }
   }
 
+  cancel(): void {
+    this.router.navigate(['/']);
+  }
+
   deleteTask(): void {
-    this.taskDeletedEvent.emit(this.inputTask.id);
+    this.taskService.removeTask(this.task.id);
+    this.router.navigate(['/']);
   }
 
   ngOnInit(): void {
-    // Clonar this.inputTask para compararla al guardar
-    this.bufferTask = Object.assign({}, this.inputTask);
-  }
+    const taskId = Number(this.route.snapshot.paramMap.get('id'));
+    const task = this.taskService.getTask(taskId);
 
+    if (task === undefined) {
+      this.router.navigate(['/']);
+    } else {
+      this.originalTask = task;
+
+      // Clonar this.inputTask para compararla al guardar
+      this.task = Object.assign({}, task);
+    }
+  }
 }

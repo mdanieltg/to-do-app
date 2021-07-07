@@ -1,27 +1,19 @@
 <header>
   <div class="navbar navbar-light bg-light">
     <div class="container-fluid">
-      <span class="navbar-brand mb-0 h1">{{editing
-                                           ? title + ': detalle de tarea'
-                                           : title}}</span>
+      <span class="navbar-brand mb-0 h1">{{title}}</span>
     </div>
   </div>
 </header>
 <main>
-  <div *ngIf="editing" class="container my-2">
-    <app-item-detail [inputTask]="selectedTask"
-                     (taskUpdatedEvent)="updateTask($event)"
-                     (taskDeletedEvent)="deleteTaskFromDetail($event)"></app-item-detail>
-  </div>
-  <div *ngIf="!editing" class="container my-2">
+  <div class="container my-2">
     <app-new-item (newItemEvent)="reload()"></app-new-item>
     <div class="list-group mt-2"
          *ngIf="tasks.length !== 0">
       <app-item-list *ngFor="let item of tasks" class="list-group-item"
                      [task]="item"
                      (selectedEvent)="selectTask($event)"
-                     (completedEvent)="completeTask($event)"
-                     (uncompletedEvent)="revertTask($event)"
+                     (updatedEvent)="updateTask($event)"
                      (deletedEvent)="deleteTask($event)"></app-item-list>
     </div>
   </div>

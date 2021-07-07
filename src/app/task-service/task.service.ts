@@ -48,24 +48,6 @@ export class TaskService {
     this.save();
   }
 
-  completeTask(taskId: number): void {
-    const itemToUpdate = this.tasks.find(t => t.id === taskId);
-
-    if (itemToUpdate) {
-      itemToUpdate.done = true;
-      this.save();
-    }
-  }
-
-  deCompleteTask(taskId: number): void {
-    const itemToUpdate = this.tasks.find(t => t.id === taskId);
-
-    if (itemToUpdate) {
-      itemToUpdate.done = false;
-      this.save();
-    }
-  }
-
   updateTask(task: ToDoTask): void {
     const itemToUpdate = this.tasks.find(t => t.id === task.id);
 
