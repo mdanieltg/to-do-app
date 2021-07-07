@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TaskService } from '../task-service/task.service';
 import { ToDoTask } from '../to-do-task';
-import { getDefaultTask } from '../util';
+import { DEFAULT_TASK } from '../util';
 
 @Component({
   selector: 'app-start',
@@ -11,7 +11,7 @@ import { getDefaultTask } from '../util';
 export class StartComponent implements OnInit {
   title = 'Lista de Tareas';
   tasks: ToDoTask[] = [];
-  selectedTask: ToDoTask = getDefaultTask();
+  selectedTask: ToDoTask = DEFAULT_TASK;
   editing = false;
 
   constructor(private taskService: TaskService) {

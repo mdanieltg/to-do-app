@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ToDoTask } from '../to-do-task';
-import { areEqualTasks as equal, getDefaultTask } from '../util';
+import { areEqualTasks as equal, DEFAULT_TASK } from '../util';
 
 @Component({
   selector: 'app-item-detail',
@@ -8,10 +8,10 @@ import { areEqualTasks as equal, getDefaultTask } from '../util';
   styleUrls: ['./item-detail.component.css']
 })
 export class ItemDetailComponent implements OnInit {
-  @Input() inputTask: ToDoTask = getDefaultTask();
+  @Input() inputTask: ToDoTask = DEFAULT_TASK;
   @Output() taskUpdatedEvent = new EventEmitter<ToDoTask>();
   @Output() taskDeletedEvent = new EventEmitter<number>();
-  bufferTask: ToDoTask = getDefaultTask();
+  bufferTask: ToDoTask = DEFAULT_TASK;
 
   constructor() {
   }

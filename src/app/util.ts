@@ -1,10 +1,13 @@
 import { ToDoTask } from './to-do-task';
 
-const defaultTask: ToDoTask = { id: 0, title: '', important: false, description: undefined, dueDate: undefined, done: false };
-
-export function getDefaultTask(): ToDoTask {
-  return defaultTask;
-}
+export const DEFAULT_TASK: ToDoTask = {
+  id: 0,
+  title: '',
+  important: false,
+  description: undefined,
+  dueDate: undefined,
+  done: false
+};
 
 export function areEqualTasks(task1: ToDoTask, task2: ToDoTask): boolean {
   if (task1.id === task2.id &&

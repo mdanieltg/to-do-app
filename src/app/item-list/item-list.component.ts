@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ToDoTask } from '../to-do-task';
+import { DEFAULT_TASK } from '../util';
 
 @Component({
   selector: 'app-item-list',
@@ -7,7 +8,7 @@ import { ToDoTask } from '../to-do-task';
   styleUrls: ['./item-list.component.css']
 })
 export class ItemListComponent {
-  @Input() task: ToDoTask | undefined;
+  @Input() task: ToDoTask = DEFAULT_TASK;
   @Output() selectedEvent = new EventEmitter<ToDoTask>();
   @Output() completedEvent = new EventEmitter<number>();
   @Output() uncompletedEvent = new EventEmitter<number>();
