@@ -4,4 +4,5 @@ export interface ToDoTask {
   important: boolean;
   dueDate: Date | undefined;
   description: string | undefined;
+  done: boolean;
 }

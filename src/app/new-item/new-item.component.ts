@@ -36,7 +36,8 @@ export class NewItemComponent {
         title: this.taskTitle,
         important: this.important,
         dueDate: undefined,
-        description: undefined
+        description: undefined,
+        done: false
       };
 
       this.newItemEvent.emit(this.prototypeTask);

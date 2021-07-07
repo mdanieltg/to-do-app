@@ -1,6 +1,6 @@
 import { ToDoTask } from './to-do-task';
 
-const defaultTask: ToDoTask = { id: 0, title: '', important: false, description: undefined, dueDate: undefined };
+const defaultTask: ToDoTask = { id: 0, title: '', important: false, description: undefined, dueDate: undefined, done: false };
 
 export function getDefaultTask(): ToDoTask {
   return defaultTask;
