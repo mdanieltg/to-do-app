@@ -1,4 +1,4 @@
-import { TaskItem } from './task-item';
+import { TaskItem } from '../task-item';
 
 export const DEFAULT_TASK: TaskItem = {
   id: 0,

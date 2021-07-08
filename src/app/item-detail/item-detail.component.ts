@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TaskService } from '../task-service/task.service';
 import { TaskItem } from '../task-item';
-import { areEqualTasks as equal, DEFAULT_TASK } from '../util';
+import { areEqualTasks as equal, DEFAULT_TASK } from '../utils/task-utils';
 
 @Component({
   selector: 'app-item-detail',

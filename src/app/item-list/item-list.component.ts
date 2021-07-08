@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { TaskItem } from '../task-item';
-import { DEFAULT_TASK } from '../util';
+import { DEFAULT_TASK } from '../utils/task-utils';
 
 @Component({
   selector: 'app-item-list',
