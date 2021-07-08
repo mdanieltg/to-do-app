@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { TaskItem } from '../task-item';
-import { readFromLocalStorage, writeToLocalStorage } from '../util';
+import { readFromLocalStorage, writeToLocalStorage } from '../utils/storage-utils';
 
 @Injectable({
   providedIn: 'root'

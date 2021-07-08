@@ -16,14 +16,3 @@ export function areEqualTasks(taskA: TaskItem, taskB: TaskItem): boolean {
     taskA.description === taskB.description &&
     taskA.dueDate === taskB.dueDate;
 }
-
-export function writeToLocalStorage<T>(name: string, item: T): void {
-  localStorage.setItem(name, JSON.stringify(item));
-}
-
-export function readFromLocalStorage<T>(name: string): T | null {
-  const item = localStorage.getItem(name);
-  return item
-         ? JSON.parse(item)
-         : null;
-}
