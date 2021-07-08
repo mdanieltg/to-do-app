@@ -9,16 +9,12 @@ export const DEFAULT_TASK: TaskItem = {
   done: false
 };
 
-export function areEqualTasks(task1: TaskItem, task2: TaskItem): boolean {
-  if (task1.id === task2.id &&
-    task1.title === task2.title &&
-    task1.important === task2.important &&
-    task1.description === task2.description &&
-    task1.dueDate === task2.dueDate) {
-    return true;
-  }
-
-  return false;
+export function areEqualTasks(taskA: TaskItem, taskB: TaskItem): boolean {
+  return taskA.id === taskB.id &&
+    taskA.title === taskB.title &&
+    taskA.important === taskB.important &&
+    taskA.description === taskB.description &&
+    taskA.dueDate === taskB.dueDate;
 }
 
 export function generateRandomId(): number {
