@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TaskService } from '../task-service/task.service';
-import { ToDoTask } from '../to-do-task';
+import { TaskItem } from '../task-item';
 import { areEqualTasks as equal, DEFAULT_TASK } from '../util';
 
 @Component({
@@ -10,8 +10,8 @@ import { areEqualTasks as equal, DEFAULT_TASK } from '../util';
   styleUrls: ['./item-detail.component.css']
 })
 export class ItemDetailComponent implements OnInit {
-  originalTask: ToDoTask = DEFAULT_TASK;
-  task: ToDoTask = DEFAULT_TASK;
+  originalTask: TaskItem = DEFAULT_TASK;
+  task: TaskItem = DEFAULT_TASK;
 
   constructor(private router: Router,
               private route: ActivatedRoute,

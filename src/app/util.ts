@@ -1,6 +1,6 @@
-import { ToDoTask } from './to-do-task';
+import { TaskItem } from './task-item';
 
-export const DEFAULT_TASK: ToDoTask = {
+export const DEFAULT_TASK: TaskItem = {
   id: 0,
   title: '',
   important: false,
@@ -9,7 +9,7 @@ export const DEFAULT_TASK: ToDoTask = {
   done: false
 };
 
-export function areEqualTasks(task1: ToDoTask, task2: ToDoTask): boolean {
+export function areEqualTasks(task1: TaskItem, task2: TaskItem): boolean {
   if (task1.id === task2.id &&
     task1.title === task2.title &&
     task1.important === task2.important &&

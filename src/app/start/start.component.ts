@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { TaskService } from '../task-service/task.service';
-import { ToDoTask } from '../to-do-task';
+import { TaskItem } from '../task-item';
 
 @Component({
   selector: 'app-start',
@@ -10,7 +10,7 @@ import { ToDoTask } from '../to-do-task';
 })
 export class StartComponent implements OnInit {
   title = 'Lista de Tareas';
-  tasks: ToDoTask[] = [];
+  tasks: TaskItem[] = [];
 
   constructor(private router: Router,
               private taskService: TaskService) {
@@ -20,7 +20,7 @@ export class StartComponent implements OnInit {
     this.router.navigate([`detalle/${taskId}`]);
   }
 
-  updateTask(task: ToDoTask): void {
+  updateTask(task: TaskItem): void {
     this.taskService.updateTask(task);
     this.reload();
   }

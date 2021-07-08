@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { ToDoTask } from '../to-do-task';
+import { TaskItem } from '../task-item';
 import { TaskService } from '../task-service/task.service';
 
 @Component({
@@ -10,7 +10,7 @@ import { TaskService } from '../task-service/task.service';
 export class NewItemComponent {
   taskTitle = '';
   important = false;
-  @Output() newItemEvent = new EventEmitter<ToDoTask>();
+  @Output() newItemEvent = new EventEmitter<TaskItem>();
 
   constructor(private taskService: TaskService) {
   }

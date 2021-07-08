@@ -1,4 +1,4 @@
-export interface ToDoTask {
+export interface TaskItem {
   id: number;
   title: string;
   important: boolean;

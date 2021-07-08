@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ToDoTask } from '../to-do-task';
+import { TaskItem } from '../task-item';
 import { generateRandomId, readFromLocalStorage, writeToLocalStorage } from '../util';
 
 @Injectable({
@@ -8,32 +8,32 @@ import { generateRandomId, readFromLocalStorage, writeToLocalStorage } from '../
 export class TaskService {
 
   private readonly ListName = 'tasks';
-  private tasks: ToDoTask[];
+  private tasks: TaskItem[];
 
   constructor() {
-    const tasks = readFromLocalStorage<ToDoTask[]>(this.ListName);
+    const tasks = readFromLocalStorage<TaskItem[]>(this.ListName);
     this.tasks = tasks ?? [];
   }
 
   private save(): void {
-    writeToLocalStorage<ToDoTask[]>(this.ListName, this.tasks);
+    writeToLocalStorage<TaskItem[]>(this.ListName, this.tasks);
   }
 
-  reload(): ToDoTask[] {
-    const tasks = readFromLocalStorage<ToDoTask[]>(this.ListName);
+  reload(): TaskItem[] {
+    const tasks = readFromLocalStorage<TaskItem[]>(this.ListName);
     this.tasks = tasks ?? [];
     return this.tasks;
   }
 
-  getTasks(): ToDoTask[] {
+  getTasks(): TaskItem[] {
     return this.tasks;
   }
 
-  getTask(taskId: number): ToDoTask | undefined {
+  getTask(taskId: number): TaskItem | undefined {
     return this.tasks.find(t => t.id === taskId);
   }
 
-  addTask(task: ToDoTask): void {
+  addTask(task: TaskItem): void {
     do {
       task.id = generateRandomId();
     } while (this.tasks.some(t => t.id === task.id));
@@ -48,7 +48,7 @@ export class TaskService {
     this.save();
   }
 
-  updateTask(task: ToDoTask): void {
+  updateTask(task: TaskItem): void {
     const itemToUpdate = this.tasks.find(t => t.id === task.id);
 
     if (itemToUpdate) {
