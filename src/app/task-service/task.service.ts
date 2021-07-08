@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { TaskItem } from '../task-item';
-import { generateRandomId, readFromLocalStorage, writeToLocalStorage } from '../util';
+import { readFromLocalStorage, writeToLocalStorage } from '../util';
 
 @Injectable({
   providedIn: 'root'
@@ -35,7 +35,8 @@ export class TaskService {
 
   addTask(task: TaskItem): void {
     do {
-      task.id = generateRandomId();
+      // Assign pseudorandom number
+      task.id = Math.floor(Math.random() * 1000000000000);
     } while (this.tasks.some(t => t.id === task.id));
 
     this.tasks.push(task);
