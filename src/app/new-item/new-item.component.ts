@@ -30,7 +30,7 @@ export class NewItemComponent {
     this.taskTitle = this.taskTitle.trim();
 
     if (this.taskTitle.length !== 0) {
-      const task = {
+      const task: TaskItem = {
         id: 0,
         title: this.taskTitle,
         important: this.important,
