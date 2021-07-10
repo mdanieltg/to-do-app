@@ -6,7 +6,7 @@ export const DEFAULT_TASK: TaskItem = {
   important: false,
   description: undefined,
   dueDate: undefined,
-  done: false
+  completed: false
 };
 
 export function areEqualTasks(taskA: TaskItem, taskB: TaskItem): boolean {

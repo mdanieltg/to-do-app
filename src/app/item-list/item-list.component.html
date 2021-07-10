@@ -1,12 +1,12 @@
 <div class="d-flex align-items-center">
   <!-- To do -->
-  <label *ngIf="!task?.done" class="flex-grow-1" (click)="select()">
+  <label *ngIf="!task?.completed" class="flex-grow-1" (click)="select()">
     <input class="form-check-input me-1" type="checkbox" (click)="toggleCompletion()">
     {{this.task?.title}}
   </label>
 
   <!-- Done -->
-  <label *ngIf="task?.done" class="flex-grow-1 text-decoration-line-through" (click)="select()">
+  <label *ngIf="task?.completed" class="flex-grow-1 text-decoration-line-through" (click)="select()">
     <input class="form-check-input me-1" type="checkbox" checked (click)="toggleCompletion()">
     {{this.task?.title}}
   </label>

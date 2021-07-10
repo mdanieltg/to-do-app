@@ -15,7 +15,7 @@ export class ItemListComponent {
 
   toggleCompletion(): void {
     if (this.task !== undefined) {
-      this.task.done = !this.task.done;
+      this.task.completed = !this.task.completed;
       this.updateTask();
     }
   }
