@@ -2,7 +2,7 @@ export interface TaskItem {
   id: number;
   title: string;
   important: boolean;
-  dueDate: Date | undefined;
+  dueDate: string | undefined;
   description: string | undefined;
   completed: boolean;
 }
