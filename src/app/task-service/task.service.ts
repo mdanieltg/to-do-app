@@ -12,7 +12,7 @@ export class TaskService {
 
   constructor() {
     const tasks = readFromLocalStorage<TaskItem[]>(this.ListName);
-    this.tasks = tasks ?? [];
+    this.tasks = tasks || [];
   }
 
   private save(): void {
@@ -21,7 +21,7 @@ export class TaskService {
 
   reload(): TaskItem[] {
     const tasks = readFromLocalStorage<TaskItem[]>(this.ListName);
-    this.tasks = tasks ?? [];
+    this.tasks = tasks || [];
     return this.tasks;
   }
 
