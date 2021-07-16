@@ -9,20 +9,29 @@
   <div class="container my-2">
     <div class="mb-3">
       <label for="title" class="form-label">Título de la tarea</label>
-      <input [(ngModel)]="task.title" type="text" id="title" class="form-control" placeholder="No puede estar vacío"
-             required>
+      <input [(ngModel)]="task.title" type="text" id="title" class="form-control"
+             placeholder="No puede estar vacío" required>
     </div>
+
+    <div class="form-check mb-3">
+      <input [(ngModel)]="task.important" type="checkbox" id="important" class="form-check-input">
+      <label for="important" class="form-check-label">Es importante</label>
+    </div>
+
     <div class="mb-3">
       <label for="description" class="form-label">Descripción</label>
       <textarea [(ngModel)]="task.description" id="description" class="form-control"></textarea>
     </div>
+
     <div class="mb-3">
       <label for="due-date" class="form-label">Fecha límite</label>
       <input [(ngModel)]="task.dueDate" type="date" id="due-date" class="form-control">
     </div>
+
     <div class="form-check mb-3">
-      <input [(ngModel)]="task.important" type="checkbox" id="important" class="form-check-input">
-      <label for="important" class="form-check-label">Es importante</label>
+      <input [(ngModel)]="task.completed" type="checkbox" id="status" class="form-check-input"
+             (click)="setCompletedDate()">
+      <label for="status" class="form-check-label">Completada</label>
     </div>
 
     <div class="d-flex justify-content-between">
@@ -30,6 +39,7 @@
         <button class="btn btn-primary" (click)="saveChanges()">Guardar</button>
         <button class="btn btn-outline-secondary" (click)="cancel()">Cancelar</button>
       </div>
+
       <button class="btn btn-danger" (click)="deleteTask(deleteButton)" #deleteButton>Eliminar</button>
     </div>
   </div>
