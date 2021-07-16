@@ -58,6 +58,7 @@ export class TaskService {
       itemToUpdate.dueDate = task.dueDate;
       itemToUpdate.description = task.description;
       itemToUpdate.completed = task.completed;
+      itemToUpdate.completionDate = task.completionDate;
 
       this.save();
     }

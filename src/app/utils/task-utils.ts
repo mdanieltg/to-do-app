@@ -15,5 +15,7 @@ export function areEqualTasks(taskA: TaskItem, taskB: TaskItem): boolean {
     taskA.title === taskB.title &&
     taskA.important === taskB.important &&
     taskA.description === taskB.description &&
-    taskA.dueDate === taskB.dueDate;
+    taskA.dueDate === taskB.dueDate &&
+    taskA.completed === taskB.completed &&
+    taskA.completionDate === taskB.completionDate;
 }
