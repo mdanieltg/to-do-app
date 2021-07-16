@@ -9,7 +9,7 @@ import { AppComponent } from './app.component';
 import { ListItemComponent } from './list-item/list-item.component';
 import { NewItemComponent } from './new-item/new-item.component';
 import { ItemDetailComponent } from './item-detail/item-detail.component';
-import { StartComponent } from './start/start.component';
+import { ItemsListComponent } from './items-list/items-list.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +17,7 @@ import { StartComponent } from './start/start.component';
     ListItemComponent,
     NewItemComponent,
     ItemDetailComponent,
-    StartComponent
+    ItemsListComponent
   ],
   imports: [
     BrowserModule,
@@ -30,7 +30,7 @@ import { StartComponent } from './start/start.component';
     }),
     RouterModule.forRoot([
       { path: 'detalle/:id', component: ItemDetailComponent },
-      { path: '', pathMatch: 'full', component: StartComponent }
+      { path: '', pathMatch: 'full', component: ItemsListComponent }
     ])
   ],
   providers: [],

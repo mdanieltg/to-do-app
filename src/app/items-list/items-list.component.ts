@@ -4,11 +4,11 @@ import { TaskService } from '../task-service/task.service';
 import { TaskItem } from '../task-item';
 
 @Component({
-  selector: 'app-start',
-  templateUrl: './start.component.html',
-  styleUrls: ['./start.component.css']
+  selector: 'app-items-list',
+  templateUrl: './items-list.component.html',
+  styleUrls: ['./items-list.component.css']
 })
-export class StartComponent implements OnInit {
+export class ItemsListComponent implements OnInit {
   title = 'Lista de Tareas';
   tasks: TaskItem[] = [];
 
