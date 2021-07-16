@@ -76,6 +76,14 @@ export class ItemDetailComponent implements OnInit {
     }
   }
 
+  setCompletedDate(): void {
+    this.task.completionDate = this.task.completed
+                               ? undefined
+                               : new Date();
+
+    console.log(this.task);
+  }
+
   ngOnInit(): void {
     const taskId = Number(this.route.snapshot.paramMap.get('id'));
     const task = this.taskService.getTask(taskId);

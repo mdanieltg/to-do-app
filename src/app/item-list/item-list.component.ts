@@ -25,6 +25,7 @@ export class ItemListComponent {
 
     if (this.task !== undefined) {
       this.task.important = !this.task.important;
+      this.task.completionDate = new Date();
       this.updateTask();
     }
   }

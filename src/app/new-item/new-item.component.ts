@@ -36,7 +36,8 @@ export class NewItemComponent {
         important: this.important,
         dueDate: undefined,
         description: undefined,
-        completed: false
+        completed: false,
+        completionDate: undefined
       };
 
       this.taskService.addTask(task);

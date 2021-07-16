@@ -5,4 +5,5 @@ export interface TaskItem {
   dueDate: string | undefined;
   description: string | undefined;
   completed: boolean;
+  completionDate: Date | undefined;
 }
