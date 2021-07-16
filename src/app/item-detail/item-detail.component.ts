@@ -80,8 +80,6 @@ export class ItemDetailComponent implements OnInit {
     this.task.completionDate = this.task.completed
                                ? undefined
                                : new Date();
-
-    console.log(this.task);
   }
 
   ngOnInit(): void {
