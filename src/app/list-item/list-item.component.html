@@ -1,17 +1,17 @@
 <div class="d-flex align-items-center">
   <!-- To do -->
-  <label *ngIf="!task?.completed" class="flex-grow-1" (click)="select()">
+  <label *ngIf="!task.completed" class="flex-grow-1" (click)="select()">
     <input class="form-check-input me-1" type="checkbox" (click)="toggleCompletion()">
-    {{this.task?.title}}
+    {{this.task.title}}
   </label>
 
   <!-- Done -->
-  <label *ngIf="task?.completed" class="flex-grow-1 text-muted" (click)="select()">
+  <label *ngIf="task.completed" class="flex-grow-1 text-muted" (click)="select()">
     <input class="form-check-input me-1" type="checkbox" checked (click)="toggleCompletion()">
-    {{this.task?.title}}
+    {{this.task.title}}
   </label>
 
   <a href="#" (click)="delete($event)"><i class="far fa-trash-alt text-danger mx-3"></i></a>
-  <a href="#" *ngIf="task?.important" (click)="toggleImportance($event)"><i class="fas fa-star"></i></a>
-  <a href="#" *ngIf="!task?.important" (click)="toggleImportance($event)"><i class="far fa-star"></i></a>
+  <a href="#" *ngIf="task.important" (click)="toggleImportance($event)"><i class="fas fa-star"></i></a>
+  <a href="#" *ngIf="!task.important" (click)="toggleImportance($event)"><i class="far fa-star"></i></a>
 </div>
