@@ -90,9 +90,7 @@ export class ItemDetailComponent implements OnInit {
       this.router.navigate(['/']);
     } else {
       this.originalTask = task;
-
-      // Clonar this.inputTask para compararla al guardar
-      this.task = Object.assign({}, task);
+      this.task = { ...task };
     }
   }
 }
