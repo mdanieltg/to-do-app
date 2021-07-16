@@ -6,7 +6,7 @@ import { environment } from '../environments/environment';
 import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
-import { ItemListComponent } from './item-list/item-list.component';
+import { ListItemComponent } from './list-item/list-item.component';
 import { NewItemComponent } from './new-item/new-item.component';
 import { ItemDetailComponent } from './item-detail/item-detail.component';
 import { StartComponent } from './start/start.component';
@@ -14,7 +14,7 @@ import { StartComponent } from './start/start.component';
 @NgModule({
   declarations: [
     AppComponent,
-    ItemListComponent,
+    ListItemComponent,
     NewItemComponent,
     ItemDetailComponent,
     StartComponent

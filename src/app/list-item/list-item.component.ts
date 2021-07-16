@@ -3,11 +3,11 @@ import { TaskItem } from '../task-item';
 import { DEFAULT_TASK } from '../utils/task-utils';
 
 @Component({
-  selector: 'app-item-list',
-  templateUrl: './item-list.component.html',
-  styleUrls: ['./item-list.component.css']
+  selector: 'app-list-item',
+  templateUrl: './list-item.component.html',
+  styleUrls: ['./list-item.component.css']
 })
-export class ItemListComponent {
+export class ListItemComponent {
   @Input() task: TaskItem = DEFAULT_TASK;
   @Output() selectedEvent = new EventEmitter<number>();
   @Output() updatedEvent = new EventEmitter<TaskItem>();
