@@ -10,6 +10,7 @@
     <div class="mb-3">
       <label for="title" class="form-label">Título de la tarea</label>
       <input [(ngModel)]="task.title" type="text" id="title" class="form-control"
+             [class.is-invalid]="task.title.trim().length === 0"
              placeholder="No puede estar vacío" required>
     </div>
 
