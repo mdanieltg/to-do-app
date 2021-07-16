@@ -6,7 +6,7 @@
   </label>
 
   <!-- Done -->
-  <label *ngIf="task?.completed" class="flex-grow-1 text-decoration-line-through" (click)="select()">
+  <label *ngIf="task?.completed" class="flex-grow-1 text-muted" (click)="select()">
     <input class="form-check-input me-1" type="checkbox" checked (click)="toggleCompletion()">
     {{this.task?.title}}
   </label>
