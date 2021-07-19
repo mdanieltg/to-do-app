@@ -29,6 +29,7 @@
       <input type="date" id="due-date" class="form-control"
              [value]="task.dueDate | date:'yyyy-MM-dd'"
              (change)="processDueDate(dueDate.value)" #dueDate>
+      <div [hidden]="!pastDueDate" class="alert alert-danger mt-1">Tarea vencida</div>
     </div>
 
     <div class="form-check mb-3">

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TaskService } from '../task-service/task.service';
 import { TaskItem } from '../task-item';
-import { areEqualTasks as equal, DEFAULT_TASK } from '../utils/task-utils';
+import { areEqualTasks as equal, DEFAULT_TASK, isPastDue } from '../utils/task-utils';
 
 @Component({
   selector: 'app-item-detail',
@@ -12,6 +12,7 @@ import { areEqualTasks as equal, DEFAULT_TASK } from '../utils/task-utils';
 export class ItemDetailComponent implements OnInit {
   originalTask: TaskItem = DEFAULT_TASK;
   task: TaskItem = DEFAULT_TASK;
+  pastDueDate = false;
   private confirmDelete = false;
   private timeout: any;
 
@@ -71,9 +72,16 @@ export class ItemDetailComponent implements OnInit {
   }
 
   processDueDate(dueDateValue: string): void {
-    this.task.dueDate = /^\d{4}-\d{2}-\d{2}$/.test(dueDateValue)
-                        ? new Date(dueDateValue.replace(/-/g, '/'))
-                        : undefined;
+    if (/^\d{4}-\d{2}-\d{2}$/.test(dueDateValue)) {
+      const date = new Date(dueDateValue.replace(/-/g, '/'));
+      date.setDate(date.getDate() + 1);
+      date.setMilliseconds(date.getMilliseconds() - 1);
+      this.task.dueDate = date;
+      this.pastDueDate = isPastDue(this.task);
+    } else {
+      this.task.dueDate = undefined;
+      this.pastDueDate = false;
+    }
   }
 
   setCompletedDate(): void {
@@ -91,6 +99,7 @@ export class ItemDetailComponent implements OnInit {
     } else {
       this.originalTask = task;
       this.task = { ...task };
+      this.pastDueDate = isPastDue(task);
     }
   }
 }

@@ -19,3 +19,11 @@ export function areEqualTasks(taskA: TaskItem, taskB: TaskItem): boolean {
     taskA.completed === taskB.completed &&
     taskA.completionDate === taskB.completionDate;
 }
+
+export function isPastDue(task: TaskItem): boolean {
+  if (task.dueDate) {
+    return task.dueDate < new Date();
+  } else {
+    return false;
+  }
+}

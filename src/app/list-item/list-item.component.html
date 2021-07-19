@@ -11,6 +11,7 @@
     {{this.task.title}}
   </label>
 
+  <i *ngIf="pastDueDate" class="fas fa-exclamation-triangle text-danger"></i>
   <a href="#" (click)="delete($event)"><i class="far fa-trash-alt text-danger mx-3"></i></a>
   <a href="#" *ngIf="task.important" (click)="toggleImportance($event)"><i class="fas fa-star"></i></a>
   <a href="#" *ngIf="!task.important" (click)="toggleImportance($event)"><i class="far fa-star"></i></a>

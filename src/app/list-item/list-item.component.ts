@@ -1,13 +1,14 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { TaskItem } from '../task-item';
-import { DEFAULT_TASK } from '../utils/task-utils';
+import { DEFAULT_TASK, isPastDue } from '../utils/task-utils';
 
 @Component({
   selector: 'app-list-item',
   templateUrl: './list-item.component.html',
   styleUrls: ['./list-item.component.css']
 })
-export class ListItemComponent {
+export class ListItemComponent implements OnInit {
+  pastDueDate = false;
   @Input() task: TaskItem = DEFAULT_TASK;
   @Output() selectedEvent = new EventEmitter<number>();
   @Output() updatedEvent = new EventEmitter<TaskItem>();
@@ -45,5 +46,9 @@ export class ListItemComponent {
 
   private updateTask(): void {
     this.updatedEvent.emit(this.task);
+  }
+
+  ngOnInit(): void {
+    this.pastDueDate = isPastDue(this.task);
   }
 }
