@@ -7,6 +7,7 @@
     <a href="#" *ngIf="important" (click)="toggleImportance($event)"><i class="fas fa-star"></i></a>
     <a href="#" *ngIf="!important" (click)="toggleImportance($event)"><i class="far fa-star"></i></a>
   </span>
-  <button (click)="createTask()" type="button"
-          class="btn btn-outline-primary"><i class="fas fa-plus"></i></button>
+  <button (click)="createTask()" type="button" class="btn btn-outline-primary">
+    <i class="fas fa-plus"></i>
+  </button>
 </div>
