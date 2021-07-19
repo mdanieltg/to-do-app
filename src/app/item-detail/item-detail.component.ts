@@ -13,22 +13,12 @@ export class ItemDetailComponent implements OnInit {
   originalTask: TaskItem = DEFAULT_TASK;
   task: TaskItem = DEFAULT_TASK;
   pastDueDate = false;
-  private confirmDelete = false;
+  confirmDelete = false;
   private timeout: any;
 
   constructor(private router: Router,
               private route: ActivatedRoute,
               private taskService: TaskService) {
-  }
-
-  private static toggleButtonStatus(button: HTMLButtonElement): void {
-    if (button.innerText === 'Eliminar') {
-      button.innerText = 'Confirmar';
-      button.classList.replace('btn-danger', 'btn-warning');
-    } else {
-      button.innerText = 'Eliminar';
-      button.classList.replace('btn-warning', 'btn-danger');
-    }
   }
 
   saveChanges(): void {
@@ -54,18 +44,16 @@ export class ItemDetailComponent implements OnInit {
     this.router.navigate(['/']);
   }
 
-  deleteTask(button: HTMLButtonElement): void {
+  deleteTask(): void {
     if (this.confirmDelete) {
       clearInterval(this.timeout);
 
       this.taskService.removeTask(this.task.id);
       this.router.navigate(['/']);
     } else {
-      ItemDetailComponent.toggleButtonStatus(button);
       this.confirmDelete = true;
 
       this.timeout = setTimeout(() => {
-        ItemDetailComponent.toggleButtonStatus(button);
         this.confirmDelete = false;
       }, 2500);
     }

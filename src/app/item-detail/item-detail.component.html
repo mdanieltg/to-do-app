@@ -44,7 +44,8 @@
         <button class="btn btn-outline-secondary" (click)="cancel()">Cancelar</button>
       </div>
 
-      <button class="btn btn-danger" (click)="deleteTask(deleteButton)" #deleteButton>Eliminar</button>
+      <button class="btn btn-danger" (click)="deleteTask()" [hidden]="confirmDelete">Eliminar</button>
+      <button class="btn btn-warning" (click)="deleteTask()" [hidden]="!confirmDelete">Confirmar</button>
     </div>
   </div>
 </main>
