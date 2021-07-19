@@ -10,7 +10,7 @@ export function writeToLocalStorage<T>(name: string, item: T): void {
 }
 
 function reviver(key: string, value: any): any {
-  if (key === 'completionDate') {
+  if (key === 'completionDate' || key === 'dueDate') {
     value = new Date(value);
   }
 

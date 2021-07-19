@@ -26,7 +26,9 @@
 
     <div class="mb-3">
       <label for="due-date" class="form-label">Fecha límite</label>
-      <input [(ngModel)]="task.dueDate" type="date" id="due-date" class="form-control">
+      <input type="date" id="due-date" class="form-control"
+             [value]="task.dueDate | date:'yyyy-MM-dd'"
+             (change)="processDueDate(dueDate.value)" #dueDate>
     </div>
 
     <div class="form-check mb-3">

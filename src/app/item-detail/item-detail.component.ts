@@ -42,12 +42,6 @@ export class ItemDetailComponent implements OnInit {
         }
       }
 
-      // Forzar fecha como undefined cuando está vacía o es inválida
-      if (this.task.dueDate !== undefined &&
-        this.task.dueDate.toString().trim() === '') {
-        this.task.dueDate = undefined;
-      }
-
       if (!equal(this.task, this.originalTask)) {
         this.taskService.updateTask(this.task);
         this.router.navigate(['/']);
@@ -74,6 +68,12 @@ export class ItemDetailComponent implements OnInit {
         this.confirmDelete = false;
       }, 2500);
     }
+  }
+
+  processDueDate(dueDateValue: string): void {
+    this.task.dueDate = /^\d{4}-\d{2}-\d{2}$/.test(dueDateValue)
+                        ? new Date(dueDateValue.replace(/-/g, '/'))
+                        : undefined;
   }
 
   setCompletedDate(): void {
