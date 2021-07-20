@@ -44,8 +44,12 @@
         <button class="btn btn-outline-secondary" (click)="cancel()">Cancelar</button>
       </div>
 
-      <button class="btn btn-danger" (click)="deleteTask()" [hidden]="confirmDelete">Eliminar</button>
-      <button class="btn btn-warning" (click)="deleteTask()" [hidden]="!confirmDelete">Confirmar</button>
+      <button class="btn delete-button-transition"
+              [class.btn-danger]="!confirmDelete"
+              [class.btn-warning]="confirmDelete"
+              (click)="deleteTask()">
+        {{ confirmDelete ? 'Confirmar' : 'Eliminar' }}
+      </button>
     </div>
   </div>
 </main>
