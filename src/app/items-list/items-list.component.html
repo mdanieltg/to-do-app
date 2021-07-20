@@ -9,7 +9,7 @@
   <div class="container my-2">
     <app-new-item (newItemEvent)="reload()"></app-new-item>
     <div class="list-group mt-2"
-         *ngIf="tasks.length !== 0">
+         [hidden]="tasks.length === 0">
       <app-list-item *ngFor="let item of tasks" class="list-group-item"
                      [task]="item"
                      (selectedEvent)="selectTask($event)"
