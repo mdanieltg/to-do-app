@@ -59,7 +59,9 @@ export class ItemDetailComponent implements OnInit {
     }
   }
 
-  processDueDate(dueDateValue: string): void {
+  processDueDate(e: Event): void {
+    const dueDateValue = (e.target as HTMLInputElement).value;
+
     if (/^\d{4}-\d{2}-\d{2}$/.test(dueDateValue)) {
       const date = new Date(dueDateValue.replace(/-/g, '/'));
       date.setDate(date.getDate() + 1);

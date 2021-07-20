@@ -28,7 +28,7 @@
       <label for="due-date" class="form-label">Fecha límite</label>
       <input type="date" id="due-date" class="form-control"
              [value]="task.dueDate | date:'yyyy-MM-dd'"
-             (change)="processDueDate(dueDate.value)" #dueDate>
+             (change)="processDueDate($event)">
       <div [hidden]="!pastDueDate" class="alert alert-danger mt-1">Tarea vencida</div>
     </div>
 
