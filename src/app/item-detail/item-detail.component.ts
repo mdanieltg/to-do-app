@@ -33,8 +33,9 @@ export class ItemDetailComponent implements OnInit {
 
       if (!equal(this.task, this.originalTask)) {
         this.taskService.updateTask(this.task);
-        this.router.navigate(['/']);
       }
+
+      this.router.navigate(['/']);
     }
   }
 
