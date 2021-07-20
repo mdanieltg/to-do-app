@@ -15,8 +15,7 @@ export class NewItemComponent {
   constructor(private taskService: TaskService) {
   }
 
-  toggleImportance(e: MouseEvent): void {
-    e.preventDefault();
+  toggleImportance(): void {
     this.important = !this.important;
   }
 

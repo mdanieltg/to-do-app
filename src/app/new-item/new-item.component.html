@@ -3,11 +3,16 @@
          class="form-control" placeholder="Agregar nueva tarea..."
          [(ngModel)]="taskTitle"
          (keyup)="captureEnterKey($event)">
+
   <span class="input-group-text">
-    <a href="#" *ngIf="important" (click)="toggleImportance($event)"><i class="fas fa-star"></i></a>
-    <a href="#" *ngIf="!important" (click)="toggleImportance($event)"><i class="far fa-star"></i></a>
+    <i class="fa-star text-primary" role="button"
+       [title]="important ? 'Tarea importante' : 'Tarea no importante'"
+       [class.fas]="important"
+       [class.far]="!important"
+       (click)="toggleImportance()"></i>
   </span>
-  <button (click)="createTask()" type="button" class="btn btn-outline-primary">
+
+  <button (click)="createTask()" type="button" class="btn btn-outline-primary" title="Agregar tarea al listado">
     <i class="fas fa-plus"></i>
   </button>
 </div>
