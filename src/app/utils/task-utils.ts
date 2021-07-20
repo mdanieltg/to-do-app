@@ -15,9 +15,9 @@ export function areEqualTasks(taskA: TaskItem, taskB: TaskItem): boolean {
     taskA.title === taskB.title &&
     taskA.important === taskB.important &&
     taskA.description === taskB.description &&
-    taskA.dueDate === taskB.dueDate &&
+    taskA.dueDate?.toISOString() === taskB.dueDate?.toISOString() &&
     taskA.completed === taskB.completed &&
-    taskA.completionDate === taskB.completionDate;
+    taskA.completionDate?.toISOString() === taskB.completionDate?.toISOString();
 }
 
 export function isPastDue(task: TaskItem): boolean {
