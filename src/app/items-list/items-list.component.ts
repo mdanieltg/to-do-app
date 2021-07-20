@@ -11,6 +11,8 @@ import { TaskItem } from '../task-item';
 export class ItemsListComponent implements OnInit {
   title = 'Lista de Tareas';
   tasks: TaskItem[] = [];
+  completedTasks: TaskItem[] = [];
+  displayCompletedTasks = false;
 
   constructor(private router: Router,
               private taskService: TaskService) {
@@ -31,10 +33,13 @@ export class ItemsListComponent implements OnInit {
   }
 
   reload(): void {
-    this.tasks = this.taskService.reload();
+    this.taskService.reload();
+    this.tasks = this.taskService.getNotCompletedTasks();
+    this.completedTasks = this.taskService.getCompletedTasks();
   }
 
   ngOnInit(): void {
-    this.tasks = this.taskService.getTasks();
+    this.tasks = this.taskService.getNotCompletedTasks();
+    this.completedTasks = this.taskService.getCompletedTasks();
   }
 }
