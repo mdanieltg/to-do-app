@@ -26,11 +26,9 @@ export class ItemDetailComponent implements OnInit {
 
     if (this.task.title !== '') {
       // Forzar descripción como undefined cuando está vacía
-      {
-        if (this.task.description !== undefined &&
-          this.task.description.trim() === '') {
-          this.task.description = undefined;
-        }
+      if (this.task.description !== undefined &&
+        this.task.description.trim() === '') {
+        this.task.description = undefined;
       }
 
       if (!equal(this.task, this.originalTask)) {
