@@ -1,15 +1,17 @@
 <div class="d-flex align-items-center">
-  <!-- To do -->
-  <label *ngIf="!task.completed" class="flex-grow-1" (click)="select()">
-    <input class="form-check-input me-1" type="checkbox" (click)="toggleCompletion()">
-    {{this.task.title}}
-  </label>
+  <div class="d-flex align-items-center flex-nowrap flex-grow-1 overflow-hidden"
+       [class.text-muted]="task.completed">
+    <i class="far" role="button"
+       [title]="task.completed ? 'Completada' : 'No completada'"
+       [class.fa-circle]="!task.completed"
+       [class.text-primary]="!task.completed"
+       [class.fa-check-circle]="task.completed"
+       (click)="toggleCompletion()"></i>
 
-  <!-- Done -->
-  <label *ngIf="task.completed" class="flex-grow-1 text-muted" (click)="select()">
-    <input class="form-check-input me-1" type="checkbox" checked (click)="toggleCompletion()">
-    {{this.task.title}}
-  </label>
+    <span class="flex-grow-1 ms-2" (click)="select()">
+      {{ this.task.title }}
+    </span>
+  </div>
 
   <i *ngIf="pastDueDate" class="fas fa-exclamation-triangle text-danger"></i>
   <a href="#" (click)="delete($event)"><i class="far fa-trash-alt text-danger mx-3"></i></a>
