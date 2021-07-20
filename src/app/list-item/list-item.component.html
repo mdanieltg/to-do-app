@@ -8,7 +8,7 @@
        [class.fa-check-circle]="task.completed"
        (click)="toggleCompletion()"></i>
 
-    <span class="ms-2" (click)="select()" title="{{ this.task.title }}">
+    <span class="flex-grow-1 ms-2" (click)="select()" title="{{ this.task.title }}">
       {{ this.task.title }}
     </span>
   </div>
