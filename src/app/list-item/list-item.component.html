@@ -1,5 +1,5 @@
 <div class="d-flex align-items-center">
-  <div class="d-flex align-items-center flex-nowrap flex-grow-1 overflow-hidden"
+  <div class="d-flex flex-nowrap flex-grow-1 align-items-center overflow-hidden"
        [class.text-muted]="task.completed">
     <i class="far" role="button"
        [title]="task.completed ? 'Completada' : 'No completada'"
@@ -8,13 +8,17 @@
        [class.fa-check-circle]="task.completed"
        (click)="toggleCompletion()"></i>
 
-    <span class="flex-grow-1 ms-2" (click)="select()">
+    <span class="ms-2" (click)="select()" title="{{ this.task.title }}">
       {{ this.task.title }}
     </span>
   </div>
 
-  <i *ngIf="pastDueDate" class="fas fa-exclamation-triangle text-danger"></i>
-  <a href="#" (click)="delete($event)"><i class="far fa-trash-alt text-danger mx-3"></i></a>
-  <a href="#" *ngIf="task.important" (click)="toggleImportance($event)"><i class="fas fa-star"></i></a>
-  <a href="#" *ngIf="!task.important" (click)="toggleImportance($event)"><i class="far fa-star"></i></a>
+  <i *ngIf="pastDueDate" class="far fa-calendar-times text-danger ms-3" title="Esta tarea ha vencido"></i>
+
+  <i class="far fa-trash-alt text-danger mx-3" title="Eliminar tarea" role="button" (click)="delete()"></i>
+
+  <i class="fa-star text-primary" [title]="task.important ? 'Tarea importante' : 'Tarea no importante'" role="button"
+     [class.fas]="task.important"
+     [class.far]="!task.important"
+     (click)="toggleImportance()"></i>
 </div>

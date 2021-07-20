@@ -25,9 +25,7 @@ export class ListItemComponent implements OnInit {
     }
   }
 
-  toggleImportance(e: MouseEvent): void {
-    e.preventDefault();
-
+  toggleImportance(): void {
     if (this.task !== undefined) {
       this.task.important = !this.task.important;
       this.task.completionDate = new Date();
@@ -39,8 +37,7 @@ export class ListItemComponent implements OnInit {
     this.selectedEvent.emit(this.task.id);
   }
 
-  delete(e: MouseEvent): void {
-    e.preventDefault();
+  delete(): void {
     this.deletedEvent.emit(this.task.id);
   }
 
