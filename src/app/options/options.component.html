@@ -1,0 +1,21 @@
+<header>
+  <div class="navbar navbar-light bg-light">
+    <div class="container-fluid">
+      <div class="navbar-brand">Opciones</div>
+    </div>
+  </div>
+</header>
+<main>
+  <div class="container my-2">
+    <div class="form-check mb-3">
+      <input type="checkbox" id="displayCompletedTasks" class="form-check-input"
+             [(ngModel)]="options.displayCompletedTasks">
+      <label for="displayCompletedTasks" class="form-check-label">Mostrar las tareas completadas.</label>
+    </div>
+
+    <div class="d-flex justify-content-between">
+      <button class="btn btn-primary" (click)="save()">Guardar</button>
+      <button class="btn btn-outline-secondary" (click)="cancel()">Cancelar</button>
+    </div>
+  </div>
+</main>

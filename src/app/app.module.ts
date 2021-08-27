@@ -10,6 +10,7 @@ import { ListItemComponent } from './list-item/list-item.component';
 import { NewItemComponent } from './new-item/new-item.component';
 import { ItemDetailComponent } from './item-detail/item-detail.component';
 import { ItemsListComponent } from './items-list/items-list.component';
+import { OptionsComponent } from './options/options.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { ItemsListComponent } from './items-list/items-list.component';
     ListItemComponent,
     NewItemComponent,
     ItemDetailComponent,
-    ItemsListComponent
+    ItemsListComponent,
+    OptionsComponent
   ],
   imports: [
     BrowserModule,
@@ -30,6 +32,7 @@ import { ItemsListComponent } from './items-list/items-list.component';
     }),
     RouterModule.forRoot([
       { path: 'detalle/:id', component: ItemDetailComponent },
+      { path: 'options', component: OptionsComponent },
       { path: '', pathMatch: 'full', component: ItemsListComponent }
     ])
   ],

@@ -1,7 +1,19 @@
 <header>
   <div class="navbar navbar-light bg-light">
     <div class="container-fluid">
-      <span class="navbar-brand mb-0 h1">{{title}}</span>
+      <span class="navbar-brand">{{ title }}</span>
+      <button class="navbar-toggler" type="button"
+              data-bs-toggle="collapse" data-bs-target="#navbarNav"
+              aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle menu">
+        <i class="fas fa-ellipsis-v"></i>
+      </button>
+      <nav class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a href="#" routerLink="options" class="nav-link">Opciones de usuario</a>
+          </li>
+        </ul>
+      </nav>
     </div>
   </div>
 </header>
@@ -9,21 +21,13 @@
   <div class="container my-2">
     <app-new-item (newItemEvent)="reload()"></app-new-item>
 
-    <div class="list-group mt-2" [hidden]="tasks.length === 0">
-      <app-list-item *ngFor="let item of tasks" class="list-group-item"
-                     [task]="item"
+    <div class="list-group mt-2" [hidden]="tasks.length === 0 && completedTasks.length === 0">
+      <app-list-item *ngFor="let task of tasks" class="list-group-item"
+                     [task]="task"
                      (selectedEvent)="selectTask($event)"
                      (updatedEvent)="updateTask($event)"
                      (deletedEvent)="deleteTask($event)"></app-list-item>
-    </div>
 
-    <button class="btn btn-link my-1"
-            [hidden]="completedTasks.length === 0"
-            (click)="displayCompletedTasks = !displayCompletedTasks">
-      {{ displayCompletedTasks ? 'Ocultar' : 'Mostrar' }} elementos eliminados
-    </button>
-
-    <div class="list-group" [hidden]="!displayCompletedTasks">
       <app-list-item *ngFor="let task of completedTasks" class="list-group-item"
                      [task]="task"
                      (selectedEvent)="selectTask($event)"

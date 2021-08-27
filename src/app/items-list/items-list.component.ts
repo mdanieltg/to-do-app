@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { TaskService } from '../task-service/task.service';
 import { TaskItem } from '../task-item';
+import { OptionsService } from '../options-service/options.service';
 
 @Component({
   selector: 'app-items-list',
@@ -15,6 +16,7 @@ export class ItemsListComponent implements OnInit {
   displayCompletedTasks = false;
 
   constructor(private router: Router,
+              private optionsService: OptionsService,
               private taskService: TaskService) {
   }
 
@@ -35,11 +37,18 @@ export class ItemsListComponent implements OnInit {
   reload(): void {
     this.taskService.reload();
     this.tasks = this.taskService.getNotCompletedTasks();
-    this.completedTasks = this.taskService.getCompletedTasks();
+
+    if (this.displayCompletedTasks) {
+      this.completedTasks = this.taskService.getCompletedTasks();
+    }
   }
 
   ngOnInit(): void {
     this.tasks = this.taskService.getNotCompletedTasks();
-    this.completedTasks = this.taskService.getCompletedTasks();
+    this.displayCompletedTasks = this.optionsService.getOptions().displayCompletedTasks;
+
+    if (this.displayCompletedTasks) {
+      this.completedTasks = this.taskService.getCompletedTasks();
+    }
   }
 }

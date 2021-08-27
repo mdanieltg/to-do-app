@@ -29,6 +29,14 @@ export class TaskService {
     return this.tasks;
   }
 
+  getCompletedTasks(): TaskItem[] {
+    return this.tasks.filter(t => t.completed);
+  }
+
+  getNotCompletedTasks(): TaskItem[] {
+    return this.tasks.filter(t => !t.completed);
+  }
+
   getTask(taskId: number): TaskItem | undefined {
     return this.tasks.find(t => t.id === taskId);
   }
